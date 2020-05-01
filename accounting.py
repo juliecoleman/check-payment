@@ -6,10 +6,17 @@ def check_payment(file_name):
     words = line.split("|")
 
     order_number, name, num_melons, customer_paid = words
+    whole_name = name.split(" ")
+    first_name = whole_name[0]
+    last_name = whole_name[1]
     customer_paid = float(customer_paid)
     customer_expected = int(num_melons) * melon_cost
     if customer_expected != customer_paid:
       print(f"{name} paid ${customer_paid:.2f},",f"expected ${customer_expected:.2f}")
+    if customer_expected > customer_paid:
+      print(f"{first_name} underpaid for melons.")
+    if customer_expected < customer_paid:
+      print(f"{first_name} overpaid for melons.")
 
 check_payment("customer-orders.txt")
 
